@@ -44,11 +44,11 @@ const getAllProducts = async (req, res) => {
   let results = Product.find(req.query);
 
   if (sort) {
-    results = results.sort(sort.replace(",", " "));
+    results = results.sort(sort.split(",").join(" "));
   }
 
   if (fields) {
-    results = results.select(fields.replace(",", " "));
+    results = results.select(fields.split(",").join(" "));
   }
 
   const page = Number(req.query.page) || 1;
